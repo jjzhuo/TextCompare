@@ -1,12 +1,13 @@
 # TextCompare
 
-Try it:  https://text-compare-qrbw.vercel.app/
+Try it:  https://text-compare.fly.dev/
 
 
 ## Project Setup if you want to build and run it yourself
 
 ```sh
 npm install
+
 ```
 
 ### Compile and Hot-Reload for Development
@@ -19,10 +20,5 @@ npm run dev
 
 ```sh
 npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
+npm run start
 ```
