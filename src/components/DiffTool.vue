@@ -10,11 +10,11 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols="12" md="6">
+        <v-col cols="6">
           <label>Version 1</label>
           <v-textarea auto-grow rows="20" row-height="10" v-model="text1" class="input-area" />
         </v-col>
-        <v-col cols="6" md="6">
+        <v-col cols="6">
           <label>Version 2</label>
           <v-textarea auto-grow rows="20" row-height="10" v-model="text2" class="input-area" />
         </v-col>
@@ -23,8 +23,12 @@
 
       <v-row>
         <v-col cols="12" v-if="differences">
+          <pre>
           <div v-html="differences[0]" class="diff-output"></div>
+        </pre>
+        <pre>
           <div v-html="differences[1]" class="diff-output"></div>
+        </pre>
         </v-col>
       </v-row>
     </v-container>
@@ -93,6 +97,9 @@ export default {
 <style scoped>
 .diff-output {
   text-align: left;
+  white-space: pre-wrap;
+  font-family: monospace;
+  word-wrap: break-word;
 }
 
 >>>.diff-removed {
