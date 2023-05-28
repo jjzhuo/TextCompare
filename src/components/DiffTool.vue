@@ -35,18 +35,26 @@
 <script lang="ts">
 import { computeDiff } from '../differ.js';
 import axios from 'axios';
+
+interface Data {
+  text1: string;
+  text2: string;
+  differences: [string, string] | null;
+  sharedLink: string;
+}
+
 export default {
-  data() {
+  data(): Data {
     return {
       text1: '',
       text2: '',
       differences: null,
-      sharedLink: null,
+      sharedLink: '',
     };
   },
   methods: {
     async share() {
-      const response = await axios.post(LOCALHOST + '/api/save_diff', {
+      const response = await axios.post('/api/save_diff', {
         text1: this.text1,
         text2: this.text2,
       });
@@ -54,16 +62,15 @@ export default {
       const id = response.data.id;
       this.sharedLink = window.location.origin + '/diff/' + id;
     },
-    async loadSharedText(id) {
-      const response = await axios.get(LOCALHOST + '/api/diff/' + id);
+    async loadSharedText(id: string) {
+      const response = await axios.get('/api/diff/' + id);
       this.text1 = response.data.text1;
       this.text2 = response.data.text2;
-      this.differences = this.computeDiff(this.text1, this.text2);
+      this.differences = computeDiff(this.text1, this.text2);
     },
   },
   created() {
-    const id = this.$route.params.id;
-    console.log(id);
+    const id = this.$route.params.id as string | undefined;
     if (id) {
       this.loadSharedText(id);
     }
