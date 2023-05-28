@@ -2,7 +2,6 @@
   <v-main>
     <v-container fluid>
       <v-row>
-        
         <v-col>
           <v-btn @click="share">Share</v-btn>
           <v-row v-if="sharedLink">
@@ -71,6 +70,7 @@ export default {
   },
   created() {
     const id = this.$route.params.id as string | undefined;
+    console.log(id);
     if (id) {
       this.loadSharedText(id);
     }
